@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Shop</title>
-    <link rel="stylesheet" type="text/css" href="styles.css"/> 
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css"/> 
 </head>
 <body>
 <div class="main">
-<div class="cart">
+<main class="products">
+    <h2>Products</h2>
+    <ul class="products-list">
+        <li>item 1
+            <input class="add" type="button" value="Add" onclick="addToCart(0, 'item 1', 19.90)">
+        </li>
+        <li>item 2
+            <input class="add" type="button" value="Add" onclick="addToCart(1, 'item 2', 49.90)">
+        </li>
+        <li>item 3
+            <input class="add" type="button" value="Add" onclick="addToCart(2, 'item 3', 2.49)">
+        </li>
+    </ul>
+</main>    
+<div class="products-cart">
     <h2>Cart</h2>
     <form>
         <table>
@@ -22,146 +37,10 @@
             <tbody id="cart">
             </tbody>
         </table>
-        <input type="submit" onclick="checkout(this)" value="Proceed to checkout"/>
     </form>
+<input type="submit" onclick="checkout(this)" value="Proceed to checkout"/>    
 </div>
-<main class="products">
-    <h2>Products</h2>
-    <ul>
-        <li>Item 1
-            <input type="button" value="Add" onclick="addToCart(0, 'Item 1', 19.9)">
-        </li>
-        <li>Item 2
-            <input type="button" value="Add" onclick="addToCart(1, 'Item 2', 49.9)">
-        </li>
-        <li>Item 3
-            <input type="button" value="Add" onclick="addToCart(2, 'Item 3', 2.49)">
-        </li>
-    </ul>
-</main>
 </div>
-<!--<template>-->
-<!--<td></td>-->
-<!--<td><input type="number" min="1"></td>-->
-<!--<td></td>-->
-<!--<td><button>Remove</button></td>-->
-<!--</template>-->
-
-<script>
-    // class CartItem {
-    //     name;
-    //     quantity;
-    //     unitPrice;
-    //     totalPrice;
-    //
-    //     constructor(name, quantity, unitPrice) {
-    //         this.name = name;
-    //         this.quantity = quantity;
-    //         this.unitPrice = unitPrice;
-    //         this.totalPrice = quantity * unitPrice;
-    //     }
-    // }
-    const cartElem = document.getElementById('cart');
-
-    const cartItems = {};
-    // const cartItem = {
-    //     name: 'Product 1',
-    //     quantity: 2,
-    //     unitPrice: 19.9
-    // };
-    // cartItems.push(cartItem);
-    function addToCart(id, name, unitPrice) {
-        if (cartItems[id]) {
-            updateQuantity(id, cartItems[id].quantity + 1);
-        } else {
-            const item = {
-                id: id,
-                name: name,
-                quantity: 1,
-                unitPrice: unitPrice
-            };
-            cartItems[id] = item;
-            renderCart();
-            // cartElem.appendChild(createCartItemRow(item));
-        }
-    }
-
-    function createCartItemRow(item) {
-        const rowElem = document.createElement('tr');
-        rowElem.id = 'cartItem-' + item.id;
-
-        // name
-        const nameCellElem = document.createElement('td');
-        nameCellElem.innerHTML = item.name;
-        rowElem.appendChild(nameCellElem);
-
-        // quantity
-        const quantCellElem = document.createElement('td');
-        const quantInputElem = document.createElement('input');
-        quantInputElem.id = 'cartItem-quantity-' + item.id;
-        quantInputElem.type = 'number';
-        quantInputElem.min = 1;
-        quantInputElem.value = item.quantity;
-        quantInputElem.addEventListener('change', (event) => {
-            updateQuantity(item.id, parseInt(event.target.value));
-        });
-        quantCellElem.appendChild(quantInputElem);
-        rowElem.appendChild(quantCellElem);
-
-        // price
-        const priceCellElem = document.createElement('td');
-        priceCellElem.innerHTML = '$' + Math.round((item.unitPrice * item.quantity) * 100) / 100;
-        rowElem.appendChild(priceCellElem);
-
-        // actions
-        const actionCellElem = document.createElement('td');
-        const removeBtnElem = document.createElement('button');
-        removeBtnElem.innerHTML = 'Remove';
-        removeBtnElem.addEventListener('click', () => {
-            removeFromCart(item.id);
-        });
-        actionCellElem.appendChild(removeBtnElem);
-        rowElem.appendChild(actionCellElem);
-        return rowElem;
-    }
-
-    function removeFromCart(itemId) {
-        delete cartItems[itemId];
-        renderCart();
-       
-        // const rowElem = document.getElementById('cartItem-' + itemId);
-        // if (rowElem) {
-        //     cartElem.removeChild(rowElem);
-        // }
-        // cartElem.removeChild()
-        // renderCart();
-    }
-
-    function updateQuantity(itemId, quantity) {
-        if (cartItems[itemId]) {
-            cartItems[itemId].quantity = quantity;
-            renderCart();
-            // const quantInputElem = document.getElementById('cartItem-quantity-' + itemId);
-            // if (quantInputElem) {
-            //     quantInputElem.value = quantity;
-            // }
-        }
-    }
-
-    function checkout(btnElem) {
-        btnElem.disabled = true;
-        btnElem.value = '... Sending your order';
-      
-        alert(JSON.stringify(cartItems));
-    }
-
-    function renderCart() {
-        cartElem.innerHTML = '';
-        for (let id in cartItems) {
-            cartElem.appendChild(createCartItemRow(cartItems[id]));
-        }
-    }
-
-</script>
+<script src="script.js"></script>
 </body>
 </html>

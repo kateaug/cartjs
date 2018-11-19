@@ -1,0 +1,76 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font: sans-serif;
+}
+
+html {
+	height: 100%;
+	padding: 15px;
+}
+
+body { 
+  min-height: 100%;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #655A56;
+  background-image: linear-gradient(to right bottom, #c4dfed, #8D9EB8);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.main {
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.products, .products-cart {
+	width: 600px;
+	height: 400px;
+	margin: 0 auto;
+    padding: 15px;
+}
+
+
+ h2 {
+    text-align: center;;
+    }
+
+ .products-list {
+ 	padding: 15px;
+    border: dotted gray;
+    list-style: none; 
+ }
+
+ .products-list li {
+ 	padding: 15px;
+
+ }
+
+  .add {
+    border-radius: 5px;
+    font-size: 11px;
+    margin-left: 10px;
+    width: 35px;
+    height: 16px;
+    text-align: center;
+    }
+
+  table {
+  	border: dotted gray;
+  	padding: 15px;
+  	margin-bottom: 15px;
+  }
+  
+  tbody {
+  	text-align: center;
+  }
+
+  th {
+  	width: 190px;
+  }
